@@ -115,6 +115,7 @@ if __name__ == "__main__":
         data_path.mkdir(parents=True)
     wine_data.write_parquet("data/wine.parq")
     logging.info("Wine data has been persisted: data/wine.parq")
+    logging.info(wine_data.head())
 
     # simulate the number of drinks per person for the three events
     attendees_first_name = get_attendee_first_names(num_f=20, num_m=16)
@@ -155,6 +156,7 @@ if __name__ == "__main__":
     logging.info("Create the aggregated drink counter per person, writing data ...")
     df_drink_counts.write_parquet("data/drink_counts.parq")
     logging.info("drink counts per person at each event persisted: data/drink_counts.parq")
+    logging.info(df_drink_counts.head())
 
     # simulate the frequency of drinks ordered based on the total amount of drinks orderd
 
@@ -229,6 +231,7 @@ if __name__ == "__main__":
         logging.info("orders matches aggreate counts per drink, persisting orders ...")
         df_wine_orders.write_parquet("data/orders.parq")
         logging.info("orders data written: data/orders.parq")
+        logging.info(df_wine_orders.head())
     except Exception as e:
         logging.error("Check process and variables in the process, there is a mis-match in the data for orders")
         raise ValueError(f"Mis-match in data for orders and aggregates\n{e}")
