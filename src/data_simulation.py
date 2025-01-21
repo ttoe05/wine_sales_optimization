@@ -15,13 +15,13 @@ from utils import init_logger
 
 
 WINE_DATA = [
-    {'id': 1, 'brand': 'Langhe Nebbiolo Rosa dell Olmo 2021', 'size -ml': 750, 'type': 'red', 'cost': 8.99},
-    {'id': 2, 'brand': 'Motif Cabernet Sauvignon Red Hill', 'size -ml': 750, 'type': 'red', 'cost': 4.99},
-    {'id': 3, 'brand': 'Chianti Classico', 'size -ml': 1500, 'type': 'sparkling', 'cost': 19.99},
-    {'id': 4, 'brand': 'Prosecco', 'size -ml': 750, 'type': 'sparkling', 'cost': 8.99},
-    {'id': 5, 'brand': 'Prosecco', 'size -ml': 750, 'type': 'sparkling', 'cost': 8.99},
-    {'id': 6, 'brand': 'Giardino Pinot Grigio', 'size -ml': 1500, 'type': 'white', 'cost': 14.99},
-    {'id': 7, 'brand': 'Honey Moon', 'size -ml': 750, 'type': 'white', 'cost': 5.49}
+    {'wine_id': 1, 'brand': 'Langhe Nebbiolo Rosa dell Olmo 2021', 'size -ml': 750, 'type': 'red', 'cost': 8.99},
+    {'wine_id': 2, 'brand': 'Motif Cabernet Sauvignon Red Hill', 'size -ml': 750, 'type': 'red', 'cost': 4.99},
+    {'wine_id': 3, 'brand': 'Chianti Classico', 'size -ml': 1500, 'type': 'red', 'cost': 19.99},
+    {'wine_id': 4, 'brand': 'Prosecco', 'size -ml': 750, 'type': 'sparkling', 'cost': 8.99},
+    {'wine_id': 5, 'brand': 'Prosecco', 'size -ml': 750, 'type': 'sparkling', 'cost': 8.99},
+    {'wine_id': 6, 'brand': 'Giardino Pinot Grigio', 'size -ml': 1500, 'type': 'white', 'cost': 14.99},
+    {'wine_id': 7, 'brand': 'Honey Moon', 'size -ml': 750, 'type': 'white', 'cost': 5.49}
 
 ]
 
@@ -183,7 +183,7 @@ if __name__ == "__main__":
     # create the dataframes
     df_wine_orders = pl.DataFrame({
         'order_date': event_1_date_list,
-        'id': event_1_drink_counts,
+        'wine_id': event_1_drink_counts,
         'event number': [1 for _ in range(order_count)],
         'order_id': [x for x in range(len(event_1_drink_counts))],
         'cust_id': map_customers_to_orders(df_counts=df_drink_counts.filter(pl.col('event number') == 1),
@@ -193,7 +193,7 @@ if __name__ == "__main__":
 
     df_wine_orders2 = pl.DataFrame({
         'order_date': event_2_date_list,
-        'id': event_2_drink_counts,
+        'wine_id': event_2_drink_counts,
         'event number': [2 for _ in range(order_count2)],
         'order_id': [500 + x for x in range(len(event_2_drink_counts))],
         'cust_id': map_customers_to_orders(df_counts=df_drink_counts2.filter(pl.col('event number') == 2),
@@ -203,7 +203,7 @@ if __name__ == "__main__":
 
     df_wine_orders3 = pl.DataFrame({
         'order_date': event_3_date_list,
-        'id': event_3_drink_counts,
+        'wine_id': event_3_drink_counts,
         'event number': [3 for _ in range(order_count3)],
         'order_id': [1100 + x for x in range(len(event_3_drink_counts))],
         'cust_id': map_customers_to_orders(df_counts=df_drink_counts3.filter(pl.col('event number') == 3),
