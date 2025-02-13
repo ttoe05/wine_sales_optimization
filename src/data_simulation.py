@@ -19,20 +19,20 @@ WINE_DATA = [
     {'wine_id': 2, 'brand': 'Motif Cabernet Sauvignon Red Hill', 'size -ml': 750, 'type': 'red', 'cost': 4.99},
     {'wine_id': 3, 'brand': 'Chianti Classico', 'size -ml': 1500, 'type': 'red', 'cost': 19.99},
     {'wine_id': 4, 'brand': 'Prosecco', 'size -ml': 750, 'type': 'sparkling', 'cost': 8.99},
-    {'wine_id': 5, 'brand': 'Prosecco', 'size -ml': 750, 'type': 'sparkling', 'cost': 8.99},
+    {'wine_id': 5, 'brand': 'Prosecco Rose', 'size -ml': 750, 'type': 'sparkling', 'cost': 8.99},
     {'wine_id': 6, 'brand': 'Giardino Pinot Grigio', 'size -ml': 1500, 'type': 'white', 'cost': 14.99},
     {'wine_id': 7, 'brand': 'Honey Moon', 'size -ml': 750, 'type': 'white', 'cost': 5.49}
 
 ]
 
-WINE_IDS = [x['id'] for x in WINE_DATA]
+WINE_IDS = [x['wine_id'] for x in WINE_DATA]
 WINE_1_PROBS = [0.099999999999999907, 0.18, 0.12, 0.13, 0.15, 0.14, 0.180000000000000009]
 WINE_2_PROBS = [0.099999999999999907, 0.07, 0.08, 0.13, 0.200000000000000009, 0.24, 0.180000000000000009]
 WINE_3_PROBS = [0.34, 0.21, 0.25, 0.09, 0.01, 0.01, 0.09]
 
 EVENT_DRINKS_PER_PERSON = [0, 1, 2, 3, 4, 5, 6] # The higheat number of drinks a person had is 6
 
-EVENT_1_DRINK_PROBS = [0.03, 0.12, 0.22, 0.43, 0.15, 0.039999999999999925, 0.01] # Event 1, 22% of attendants had 2 drinks
+EVENT_1_DRINK_PROBS = [0.03, 0.07, 0.19, 0.33, 0.3, 0.069999999999999925, 0.01] # Event 1, 22% of attendants had 2 drinks
 EVENT_2_DRINK_PROBS = [0.02, 0.15, 0.45, 0.24, 0.08, 0.050000000000000027, 0.01]
 EVENT_3_DRINK_PROBS = [0.03, 0.11, 0.37, 0.33, 0.11, 0.03, 0.019999999999999907]
 
@@ -122,9 +122,9 @@ if __name__ == "__main__":
     attendees_first_name2 = get_attendee_first_names(num_f=30, num_m=22)
     attendees_first_name3 = get_attendee_first_names(num_f=40, num_m=31)
 
-    event_1_drink_counts = discrete_sampler(vals=EVENT_DRINKS_PER_PERSON, n=EVENT_1_ATTENDEES, probs=WINE_1_PROBS)
-    event_2_drink_counts = discrete_sampler(vals=EVENT_DRINKS_PER_PERSON, n=EVENT_2_ATTENDEES, probs=WINE_2_PROBS)
-    event_3_drink_counts = discrete_sampler(vals=EVENT_DRINKS_PER_PERSON, n=EVENT_3_ATTENDEES, probs=WINE_3_PROBS)
+    event_1_drink_counts = discrete_sampler(vals=EVENT_DRINKS_PER_PERSON, n=EVENT_1_ATTENDEES, probs=EVENT_1_DRINK_PROBS)
+    event_2_drink_counts = discrete_sampler(vals=EVENT_DRINKS_PER_PERSON, n=EVENT_2_ATTENDEES, probs=EVENT_2_DRINK_PROBS)
+    event_3_drink_counts = discrete_sampler(vals=EVENT_DRINKS_PER_PERSON, n=EVENT_3_ATTENDEES, probs=EVENT_3_DRINK_PROBS)
 
     # create the dataframes
     df_drink_counts = pl.DataFrame({
